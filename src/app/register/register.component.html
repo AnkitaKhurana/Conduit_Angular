@@ -8,8 +8,9 @@
             <input id="username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="username"
                 formControlName="username">
 
-            <div *ngIf="username.invalid && (username.dirty || username.touched)">
-                <div *ngIf="username">
+            <div *ngIf="username">
+                <div *ngIf="username.invalid && (username.dirty || username.touched)">
+
                     <div *ngIf="username.errors" class="alert alert-danger">
                         <div *ngIf="username.errors.required">Username is required.</div>
                     </div>
@@ -26,8 +27,9 @@
             <input id="email" class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="Email"
                 formControlName="email">
 
-            <div *ngIf="email.invalid && (email.dirty || email.touched)">
-                <div *ngIf="email">
+            <div *ngIf="email">
+
+                <div *ngIf="email.invalid && (email.dirty || email.touched)">
                     <div *ngIf="email.errors" class="alert alert-danger">
                         <div *ngIf="email.errors.required">Email is required.</div>
                     </div>
