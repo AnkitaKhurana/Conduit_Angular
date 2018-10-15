@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../shared/services/user.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -14,10 +15,11 @@ export class LoginComponent implements OnInit {
   
   responseError: string;
   form: FormGroup;
-  constructor(private userService : UserService,private formBuilder: FormBuilder) { }
+  constructor(private userService : UserService,private formBuilder: FormBuilder, private router : Router) { }
   login(): void {
     this.userService.login(this.form.value).subscribe(user =>
       {         
+        this.router.navigateByUrl('/');        
       },     
       error => {
         Object.keys(JSON.parse(error._body).errors).forEach((k) => this.responseError = k + ' ' + JSON.parse(error._body).errors[k])

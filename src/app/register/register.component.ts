@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../shared/services/user.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -13,12 +15,12 @@ export class RegisterComponent implements OnInit {
   get email() { return this.form.get('email'); }
   get password() { return this.form.get('password'); }
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) { }
+  constructor(private userService: UserService, private formBuilder: FormBuilder,  private router : Router) { }
   form: FormGroup;
   responseError: string;
   register(): void {
     this.userService.register(this.form.value).subscribe(user => {
-      console.log(user)
+      this.router.navigateByUrl('/');        
     },
       error => {
         Object.keys(JSON.parse(error._body).errors).forEach((k) => this.responseError = k + ' ' + JSON.parse(error._body).errors[k])
