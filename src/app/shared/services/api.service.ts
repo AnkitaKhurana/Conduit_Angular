@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators'
 import { TokenService } from './token.service';
 
@@ -12,6 +12,7 @@ export class ApiService {
   ) { }
   private apiUrl = 'https://conduit.productionready.io/api';
   private setHeaders(): Headers {
+
     const headersConfig = {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -20,11 +21,12 @@ export class ApiService {
     if (this.tokenService.getToken()) {
       headersConfig['Authorization'] = `Token ${this.tokenService.getToken()}`;
     }
+    
     return new Headers(headersConfig);
   }
 
-  private formatErrors(error: any) {
-    return Observable.throw(error);
+  private formatErrors(error: any)  {
+    return throwError(error);
   }
 
   get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {

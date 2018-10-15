@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from "rxjs";
-import { map } from 'rxjs/operators'
+import { map, catchError} from 'rxjs/operators'
 import { ApiService } from './api.service';
 import { TokenService } from './token.service';
 import { User } from '../models/user';
@@ -44,10 +44,28 @@ export class UserService {
     return this.apiService.post('/users/login', { user: body }).pipe(
       map(
         data => {
-          console.log('data', data.json())
           this.setAuth(data.json().user);
           return data;
         }
       ));
+  }
+
+  register(user: User): Observable<User> {
+    let body = {
+      "email": user.email,
+      "password": user.password,
+      "username": user.username
+    }
+    return this.apiService.post('/users', { user: body }).pipe(
+      map(
+        data => {
+          this.setAuth(data.json().user);
+          return data;
+        },
+        error=>{
+          console.log(error)
+        }
+      ))
+     
   }
 }

@@ -16,7 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FeedComponent } from './feed/feed.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './shared/services/api.service';

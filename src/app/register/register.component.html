@@ -1,3 +1,59 @@
-<p>
-  register works!
-</p>
+<h3>{{responseError}}</h3>
+
+<form class="form-horizontal" [formGroup]="form" (ngSubmit)="register()">
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <label for="username" class="control-label">username</label>
+            <input id="username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="username"
+                formControlName="username">
+
+            <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                <div *ngIf="username">
+                    <div *ngIf="username.errors" class="alert alert-danger">
+                        <div *ngIf="username.errors.required">Username is required.</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <label for="email" class="control-label">email</label>
+            <input id="email" class="form-control mr-sm-2" type="text" placeholder="Email" aria-label="Email"
+                formControlName="email">
+
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email">
+                    <div *ngIf="email.errors" class="alert alert-danger">
+                        <div *ngIf="email.errors.required">Email is required.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <label for="password" class="control-label">Password</label>
+            <input id="password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password"
+                formControlName="password">
+            <div *ngIf="password">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <div *ngIf="password.errors" class="alert alert-danger">
+                        <div *ngIf="password.errors.required">Password is required.</div>
+                        <div *ngIf="password.errors.minLength!==null">Password must be of min 8 characters</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+        Register
+    </button>
+
+</form>
