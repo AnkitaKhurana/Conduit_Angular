@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   get email(){ return this.form.get('email')}
@@ -15,7 +15,10 @@ export class LoginComponent implements OnInit {
   
   responseError: string;
   form: FormGroup;
-  constructor(private userService : UserService,private formBuilder: FormBuilder, private router : Router) { }
+  constructor(private userService : UserService,private formBuilder: FormBuilder, private router : Router) {
+
+    console.log(this)
+   }
   login(): void {
     this.userService.login(this.form.value).subscribe(user =>
       {         

@@ -21,15 +21,16 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './shared/services/api.service';
 import { UserService } from './shared/services/user.service';
-
+import {AuthGuard} from './auth.guard';
 
 const appRoutes: Routes = [
   {path:'',component:PageComponent},
   {path: 'page', component: PageComponent, children: [
-    {path: 'feed', component: FeedComponent},
+    {path: 'feed', component: FeedComponent, canActivate : [AuthGuard]},
+  
   ]},
   { path: 'login', component: LoginComponent },
-  { path: 'register',      component: RegisterComponent },
+  { path: 'register', component: RegisterComponent },
   // {
   //   path: 'feed',
   //   component: ,
@@ -69,7 +70,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
 
   ],
-  providers: [ApiService, UserService],
+  providers: [ApiService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
