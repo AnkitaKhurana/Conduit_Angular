@@ -1,3 +1,13 @@
-<p>
-  article works!
-</p>
+<div id="list-example" class="list-group box">
+          
+    <a class="list-group-item list-group-item-action ">  
+        <div class="profileBox">
+                <i class="fa fa-user-circle-o fa-3x " aria-hidden="true"></i>
+                <p class="authorLabel">{{article.author.username}}</p>
+        </div>
+        <h3>{{article.title}}</h3>
+        <p>{{article.description}}</p>
+        <!-- routerLink="/page/articles" -->
+        <button class="btn btn-info" [routerLink]="['/article',article.slug]">Read More</button>
+    </a>
+</div>

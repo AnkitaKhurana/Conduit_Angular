@@ -1,3 +1,28 @@
-<p>
-  menu works!
-</p>
+
+    <div *ngIf="isLoggedIn">
+      <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    </div>
+    
+    <div *ngIf="!isLoggedIn">
+     
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/page/articles">Global Feed</a>
+      </li>
+    </ul>
+    </div>
+    
+

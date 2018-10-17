@@ -22,15 +22,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './shared/services/api.service';
 import { UserService } from './shared/services/user.service';
 import {AuthGuard} from './auth.guard';
+import { ArticlesComponent } from './articles/articles.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ArticlePageComponent } from './article-page/article-page.component';
 
 const appRoutes: Routes = [
   {path:'',component:PageComponent},
   {path: 'page', component: PageComponent, children: [
-    {path: 'feed', component: FeedComponent, canActivate : [AuthGuard]},
+    {path: 'articles', component: ArticlesComponent},
+    // {path: 'article', component: ArticleComponent},
+
+    // {path: 'article', component: ArticleComponent, canActivate : [AuthGuard]},
   
   ]},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {path: 'article/:slug', component: ArticlePageComponent},
+
+
   // {
   //   path: 'feed',
   //   component: ,
@@ -60,7 +69,10 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    FeedComponent
+    FeedComponent,
+    ArticlesComponent,
+    ProfileComponent,
+    ArticlePageComponent
   ],
   imports: [
     HttpModule,

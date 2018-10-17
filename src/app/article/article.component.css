@@ -1,0 +1,13 @@
+.box{
+    margin:10px;
+}
+
+.profileBox{
+
+    display: inline-flex;
+}
+
+.authorLabel{
+    padding-top: 10%;
+    padding-left: 15%;
+}
