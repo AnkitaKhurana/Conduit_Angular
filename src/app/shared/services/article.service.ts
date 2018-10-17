@@ -29,4 +29,13 @@ export class ArticleService {
         }
     ));
   }
+
+  getFeedArticles(){
+    return this.apiService.get('/articles/feed/').pipe(
+      map(
+        data => {
+         return data.json().articles;
+        }
+    ));
+  }
 }

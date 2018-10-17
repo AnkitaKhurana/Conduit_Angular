@@ -19,4 +19,13 @@ export class MenuComponent implements OnInit {
     this.router.navigateByUrl('/page/articles');
   }
 
+  updateTab(){
+    console.log(this)
+    // $(".nav li a").on("click", function() {
+    //   console.log('th')
+    //   $(".nav li a").removeClass("active");
+    //   $(this).addClass("active");
+    // });
+  }
+
 }

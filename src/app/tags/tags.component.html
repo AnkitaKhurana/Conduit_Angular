@@ -1,3 +1,8 @@
-<p>
-  tags works!
-</p>
+<div  class="box">
+  <h4>Popular Tags</h4>
+  <ul >
+    <li *ngFor="let tag of tags" class="btn btn-primary" [routerLink]="['tag',tag]">
+      {{tag}}
+    </li>
+  </ul>
+</div>

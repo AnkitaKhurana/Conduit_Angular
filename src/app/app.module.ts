@@ -27,11 +27,16 @@ import { ProfileComponent } from './profile/profile.component';
 import { ArticlePageComponent } from './article-page/article-page.component';
 import { CommentsComponent } from './comments/comments.component';
 import { CommentComponent } from './comment/comment.component';
+import { TagPageComponent } from './tag-page/tag-page.component';
+import { MyFeedComponent } from './my-feed/my-feed.component';
 
 const appRoutes: Routes = [
   {path:'',component:PageComponent},
   {path: 'page', component: PageComponent, children: [
     {path: 'articles', component: ArticlesComponent},
+    {path: 'tag/:tagString', component: TagPageComponent},
+    {path: 'myFeed', component: MyFeedComponent},
+
     // {path: 'article', component: ArticleComponent},
 
     // {path: 'article', component: ArticleComponent, canActivate : [AuthGuard]},
@@ -40,7 +45,6 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {path: 'article/:slug', component: ArticlePageComponent},
-
 
   // {
   //   path: 'feed',
@@ -76,7 +80,9 @@ const appRoutes: Routes = [
     ProfileComponent,
     ArticlePageComponent,
     CommentsComponent,
-    CommentComponent
+    CommentComponent,
+    TagPageComponent,
+    MyFeedComponent
   ],
   imports: [
     HttpModule,

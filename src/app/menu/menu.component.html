@@ -2,16 +2,16 @@
     <div *ngIf="isLoggedIn">
       <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" href="#">Feed</a>
+        <a class="nav-link active" data-toggle="tab" routerLink="" >Global Feed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" data-toggle="tab" routerLink="myFeed">My Feed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" data-toggle="tab"  routerLink="myFeed" >My Favourites</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" data-toggle="tab"  routerLink="myFeed" >Disabled</a>
       </li>
     </ul>
     </div>
