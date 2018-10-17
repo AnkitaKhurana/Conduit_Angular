@@ -1,0 +1,5 @@
+<div  *ngFor="let article of articles">
+    <app-article [article]="article"></app-article>
+</div>
+
+<p *ngIf="articles.length<=0">No Favourites yet</p>

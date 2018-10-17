@@ -11,7 +11,7 @@ import { User } from '../models/user';
 export class UserService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   loggingObservable = this.loggedIn.asObservable();
-  private user: User;
+  public user: User;
   constructor(private apiService: ApiService, private tokenService: TokenService) { }
 
   loggedInStatus(){

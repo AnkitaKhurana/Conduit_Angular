@@ -29,6 +29,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { CommentComponent } from './comment/comment.component';
 import { TagPageComponent } from './tag-page/tag-page.component';
 import { MyFeedComponent } from './my-feed/my-feed.component';
+import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
 
 const appRoutes: Routes = [
   {path:'',component:PageComponent},
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
     {path: 'articles', component: ArticlesComponent},
     {path: 'tag/:tagString', component: TagPageComponent},
     {path: 'myFeed', component: MyFeedComponent},
+    {path: 'myFavorites', component: MyFavoritesComponent},
 
     // {path: 'article', component: ArticleComponent},
 
@@ -82,7 +84,8 @@ const appRoutes: Routes = [
     CommentsComponent,
     CommentComponent,
     TagPageComponent,
-    MyFeedComponent
+    MyFeedComponent,
+    MyFavoritesComponent
   ],
   imports: [
     HttpModule,
