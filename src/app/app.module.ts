@@ -25,6 +25,8 @@ import {AuthGuard} from './auth.guard';
 import { ArticlesComponent } from './articles/articles.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ArticlePageComponent } from './article-page/article-page.component';
+import { CommentsComponent } from './comments/comments.component';
+import { CommentComponent } from './comment/comment.component';
 
 const appRoutes: Routes = [
   {path:'',component:PageComponent},
@@ -72,7 +74,9 @@ const appRoutes: Routes = [
     FeedComponent,
     ArticlesComponent,
     ProfileComponent,
-    ArticlePageComponent
+    ArticlePageComponent,
+    CommentsComponent,
+    CommentComponent
   ],
   imports: [
     HttpModule,
