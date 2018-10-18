@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Article} from '../models/article';
+import { Article } from '../models/article';
 import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { UserService } from './user.service';
 import { URLSearchParams } from '@angular/http';
@@ -13,54 +14,69 @@ const params: URLSearchParams = new URLSearchParams();
 export class ArticleService {
 
   globalArticles: Array<Article>;
-  constructor(private apiService: ApiService, private userService :UserService){ }
-  
-  getAllArticles(){
+  constructor(private apiService: ApiService, private userService: UserService) { }
+
+  getAllArticles() {
     return this.apiService.get('/articles').pipe(
       map(
         data => {
-         return data.json().articles;
+          return data.json().articles;
         }
-    ));
+      ));
   }
 
-  getArticle(slug: string){
-    return this.apiService.get('/articles/'+slug).pipe(
+  getArticle(slug: string) {
+    return this.apiService.get('/articles/' + slug).pipe(
       map(
         data => {
-         return data.json().article;
+          return data.json().article;
         }
-    ));
+      ));
   }
 
-  getFeedArticles(){
+  getFeedArticles() {
     return this.apiService.get('/articles/feed/').pipe(
       map(
         data => {
-         return data.json().articles;
+          return data.json().articles;
         }
-    ));
+      ));
   }
 
-  getFavArticles(){
+  getFavArticles() {
     params.delete('author');
     params.set('favorited', this.userService.user.username);
-    return this.apiService.get('/articles',params).pipe(
+    return this.apiService.get('/articles', params).pipe(
       map(
         data => {
-         return data.json().articles;
+          return data.json().articles;
         }
-    ));
+      ));
   }
 
-  getMyArticles(){
+  getMyArticles() {
     params.delete('favorited');
     params.set('author', this.userService.user.username);
-    return this.apiService.get('/articles',params).pipe(
+    return this.apiService.get('/articles', params).pipe(
       map(
         data => {
-         return data.json().articles;
+          return data.json().articles;
         }
-    ));
+      ));
+  }
+
+  add(article: Article): Observable<Article> {
+    let body = {
+      "title": article.title,
+      "description": article.description,
+      "body": article.body,
+      "tagList": article.tagList
+    }
+    return this.apiService.post('/articles', { article: body }).pipe(
+      map(
+        data => {
+          return data.json().article;
+        }
+      ));
   }
 }

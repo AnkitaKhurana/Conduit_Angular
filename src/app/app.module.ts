@@ -31,6 +31,7 @@ import { TagPageComponent } from './tag-page/tag-page.component';
 import { MyFeedComponent } from './my-feed/my-feed.component';
 import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
 import { MyArticlesComponent } from './my-articles/my-articles.component';
+import { ArticleEditorComponent } from './article-editor/article-editor.component';
 
 const appRoutes: Routes = [
   {path:'',component:PageComponent},
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {path: 'article/:slug', component: ArticlePageComponent},
+  {path: 'addArticle', component: ArticleEditorComponent}
 
   // {
   //   path: 'feed',
@@ -88,7 +90,8 @@ const appRoutes: Routes = [
     TagPageComponent,
     MyFeedComponent,
     MyFavoritesComponent,
-    MyArticlesComponent
+    MyArticlesComponent,
+    ArticleEditorComponent
   ],
   imports: [
     HttpModule,

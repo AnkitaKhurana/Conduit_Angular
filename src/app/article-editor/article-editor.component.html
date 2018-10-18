@@ -1,0 +1,68 @@
+<h3>{{responseError}}</h3>
+
+<form class="form-horizontal" [formGroup]="form" (ngSubmit)="addArticle()">
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <label for="title" class="control-label">Article Title</label>
+            <input id="title" class="form-control mr-sm-2" type="text" placeholder="Article Title" aria-label="title"
+                formControlName="title">
+            <div *ngIf="title">
+                <div *ngIf="title.invalid && (title.dirty || title.touched)">
+
+                    <div *ngIf="title.errors" class="alert alert-danger">
+                        <div *ngIf="title.errors.required">Title is required.</div>
+                        <div *ngIf="body.errors.minLength!==null">Title must be of min 1 characters</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <label for="description" class="control-label">Article Description</label>
+            <input id="description" class="form-control mr-sm-2" type="text" placeholder="Article Description" aria-label="description"
+                formControlName="description">
+
+            <div *ngIf="description">
+
+                <div *ngIf="description.invalid && (description.dirty || description.touched)">
+                    <div *ngIf="description.errors" class="alert alert-danger">
+                        <div *ngIf="description.errors.required">Description is required.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <label for="body" class="control-label">Article Body</label>
+            <input id="body" class="form-control mr-sm-2" type="text" placeholder="Article Body" aria-label="body"
+                formControlName="body">
+            <div *ngIf="body">
+                <div *ngIf="body.invalid && (body.dirty || body.touched)">
+                    <div *ngIf="body.errors" class="alert alert-danger">
+                        <div *ngIf="body.errors.required">Body is required.</div>
+                        <div *ngIf="body.errors.minLength!==null">Body must be of min 1 characters</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <label for="tags" class="control-label">Article Tags</label>
+            <input id="tags" class="form-control mr-sm-2" type="text" placeholder="Article Tags - Seperate multiple tags by comma" aria-label="tags"
+                formControlName="tags">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+        Publish Article
+    </button>
+
+</form>
