@@ -80,10 +80,25 @@ export class ArticleService {
       ));
   }
 
-  deleteArticle(articleSlug: string): Observable<any>{
+  delete(articleSlug: string): Observable<any>{
     return this.apiService.delete('/articles/'+articleSlug).pipe(map(data=>{
       return data;
     }),
     );    
+  }
+
+  edit(article: Article,articleSlug: string): Observable<Article> {
+    let body = {
+      "title": article.title,
+      "description": article.description,
+      "body": article.body,
+      "tagList": article.tagList
+    }
+    return this.apiService.put('/articles/'+articleSlug, { article: body }).pipe(
+      map(
+        data => {
+          return data.json().article;
+        }
+      ));
   }
 }

@@ -1,6 +1,6 @@
 <h3>{{responseError}}</h3>
 
-<form class="form-horizontal" [formGroup]="form" (ngSubmit)="addArticle()">
+<form class="form-horizontal" [formGroup]="form" (ngSubmit)="publishArticle()">
 
     <div class="form-group">
         <div class="col-sm-12">
@@ -12,7 +12,7 @@
 
                     <div *ngIf="title.errors" class="alert alert-danger">
                         <div *ngIf="title.errors.required">Title is required.</div>
-                        <div *ngIf="body.errors.minLength!==null">Title must be of min 1 characters</div>
+                        <div *ngIf="title.errors.minLength!==null">Title must be of min 1 characters</div>
 
                     </div>
                 </div>
@@ -23,11 +23,9 @@
     <div class="form-group">
         <div class="col-sm-12">
             <label for="description" class="control-label">Article Description</label>
-            <input id="description" class="form-control mr-sm-2" type="text" placeholder="Article Description" aria-label="description"
-                formControlName="description">
-
+            <input id="description" class="form-control mr-sm-2" type="text" placeholder="Article Description"
+                aria-label="description" formControlName="description">
             <div *ngIf="description">
-
                 <div *ngIf="description.invalid && (description.dirty || description.touched)">
                     <div *ngIf="description.errors" class="alert alert-danger">
                         <div *ngIf="description.errors.required">Description is required.</div>
@@ -55,9 +53,9 @@
 
     <div class="form-group">
         <div class="col-sm-12">
-            <label for="tags" class="control-label">Article Tags</label>
-            <input id="tags" class="form-control mr-sm-2" type="text" placeholder="Article Tags - Seperate multiple tags by comma" aria-label="tags"
-                formControlName="tags">
+            <label for="tagList" class="control-label">Article Tags</label>
+            <input id="tagList" class="form-control mr-sm-2" type="text" placeholder="Article Tags - Seperate multiple tags by comma"
+                aria-label="tagList" formControlName="tagList">
         </div>
     </div>
 

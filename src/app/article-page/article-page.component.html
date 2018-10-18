@@ -6,7 +6,7 @@
         </div>
         <div class="col-md-3">
             <div *ngIf=isMyArticle>
-                    <button type="button" class="btn btn-info">Edit Article</button>
+                    <button type="button" class="btn btn-info" [routerLink]="['/editArticle']" [queryParams]="{slug:article.slug}">Edit Article</button>
                     <button type="button" class="btn btn-danger" (click)="deleteArticle()">Delete Article</button>
             </div>
             <div *ngIf=!isMyArticle>
