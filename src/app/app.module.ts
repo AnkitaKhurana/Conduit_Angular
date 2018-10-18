@@ -50,7 +50,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {path: 'article/:slug', component: ArticlePageComponent},
-  {path: 'addArticle', component: ArticleEditorComponent}
+  {path: 'addArticle', component: ArticleEditorComponent},
 
   // {
   //   path: 'feed',

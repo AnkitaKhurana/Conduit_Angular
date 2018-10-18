@@ -1,0 +1,12 @@
+.jumbotron{
+    margin:5%;
+    background-color: #e4faed;
+}
+
+.profileBox{
+    display:inline-flex
+}
+
+.btn{
+    margin: 2px;
+}

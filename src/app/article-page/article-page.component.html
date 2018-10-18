@@ -1,5 +1,26 @@
-<p>
- {{article.title}}
-</p>
-// Add Article UI
-<app-comments [slug]="article.slug"></app-comments>
+<div class="jumbotron">
+ <div *ngIf="article">
+    <div class="row">
+        <div class="col-md-9">
+            <h1 class="display-4">{{article.title}}</h1>
+        </div>
+        <div class="col-md-3">
+            <div *ngIf=isMyArticle>
+                    <button type="button" class="btn btn-info">Edit Article</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteArticle()">Delete Article</button>
+            </div>
+            <div *ngIf=!isMyArticle>
+                 diff   
+            </div>
+        </div>
+        </div>    
+    <p class="lead"> {{article.description}}</p>
+    <div class="profileBox">
+        <img src="{{article.author.image}}" height="20px" height="20px">
+        <p> &nbsp;{{article.author.username}}</p>
+    </div>
+    <hr class="my-4">
+    <p> {{article.body}}</p>
+    <app-comments [slug]="article.slug"></app-comments>
+    </div>
+</div>

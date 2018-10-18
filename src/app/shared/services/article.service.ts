@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article } from '../models/article';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
 import { UserService } from './user.service';
 import { URLSearchParams } from '@angular/http';
 
@@ -78,5 +78,12 @@ export class ArticleService {
           return data.json().article;
         }
       ));
+  }
+
+  deleteArticle(articleSlug: string): Observable<any>{
+    return this.apiService.delete('/articles/'+articleSlug).pipe(map(data=>{
+      return data;
+    }),
+    );    
   }
 }
