@@ -5,6 +5,7 @@ import { ArticleService } from '../shared/services/article.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../shared/models/user';
 import {Router} from '@angular/router';
+import { ProfileService } from '../shared/services/profile.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import {Router} from '@angular/router';
 })
 export class ArticlePageComponent implements OnInit {
 
-  constructor( private articleService: ArticleService,private route: ActivatedRoute, private userService :UserService, private router : Router) {    
+  constructor( private articleService: ArticleService,private route: ActivatedRoute, private userService :UserService, private router : Router, private profileService: ProfileService) {    
   }
   user: User;
   article : Article;
@@ -33,5 +34,16 @@ export class ArticlePageComponent implements OnInit {
   deleteArticle(){
       this.articleService.delete(this.article.slug).subscribe();
       this.router.navigateByUrl('');    
+  }
+
+  follow(){
+    this.article.author.following = true;
+    this.profileService.follow(this.article.author.username).subscribe();
+
+  }
+
+  unfollow(){
+    this.article.author.following = false;
+    this.profileService.unfollow(this.article.author.username).subscribe();
   }
 }
