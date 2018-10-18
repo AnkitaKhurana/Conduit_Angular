@@ -9,7 +9,7 @@ import {Article} from '../shared/models/article';
 })
 export class MyFavoritesComponent implements OnInit {
 
-  constructor(private articleService : ArticleService) { }
+  constructor(private articleService : ArticleService) { this.articles = [];}
   articles : Array<Article>;
   ngOnInit() {
     this.articleService.getFavArticles().subscribe(data => this.articles = data);

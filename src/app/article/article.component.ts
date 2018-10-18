@@ -9,7 +9,9 @@ import { Article } from '../shared/models/article';
 export class ArticleComponent implements OnInit {
 
   @Input() article: Article
-  constructor() { }
+  constructor() { this.article = new Article();
+  this.article.slug="";
+  }
   ngOnInit() {
   }
   

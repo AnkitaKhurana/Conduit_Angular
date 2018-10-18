@@ -9,7 +9,7 @@ import {Article} from '../shared/models/article';
 })
 export class MyFeedComponent implements OnInit {
 
-  constructor(private articleService : ArticleService) { }
+  constructor(private articleService : ArticleService) { this.articles = []; }
   articles : Array<Article>;
   ngOnInit() {
     this.articleService.getFeedArticles().subscribe(data => this.articles = data);
