@@ -43,8 +43,19 @@ export class ArticleService {
   }
 
   getFavArticles(){
+    params.delete('author');
     params.set('favorited', this.userService.user.username);
-    console.log(this.userService.user.username)
+    return this.apiService.get('/articles',params).pipe(
+      map(
+        data => {
+         return data.json().articles;
+        }
+    ));
+  }
+
+  getMyArticles(){
+    params.delete('favorited');
+    params.set('author', this.userService.user.username);
     return this.apiService.get('/articles',params).pipe(
       map(
         data => {
