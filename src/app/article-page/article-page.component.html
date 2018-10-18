@@ -10,11 +10,11 @@
                     <button type="button" class="btn btn-danger" (click)="deleteArticle()">Delete Article</button>
             </div>
             <div *ngIf=!isMyArticle>
-                    <button *ngIf="!article.author.following" type="button" class="btn btn-info"  (click)="follow()" >Follow</button>
-                    <button *ngIf="article.author.following" type="button" class="btn btn-default"  (click)="unfollow()" >Unfollow</button>
+                    <button *ngIf="!article.author.following" type="button" class="btn btn-info"  (click)="follow()" >Follow {{article.author.username}}</button>
+                    <button *ngIf="article.author.following" type="button" class="btn btn-default"  (click)="unfollow()" >Unfollow {{article.author.username}}</button>
 
-                    <button *ngIf="!article.favorited" type="button" class="btn btn-warning">Favorite Article <span>{{article.favoritesCount}}</span></button> 
-                    <button *ngIf="article.favorited" type="button" class="btn btn-warning">Unfavorite <span>{{article.favoritesCount}}</span></button> 
+                    <button *ngIf="!article.favorited" type="button" class="btn btn-warning" (click)="favorite()">Favorite Article <span>{{article.favoritesCount}}</span></button> 
+                    <button *ngIf="article.favorited" type="button" class="btn btn-warning" (click)="unfavorite()">Unfavorite Article<span>{{article.favoritesCount}}</span></button> 
 
                 </div>
         </div>

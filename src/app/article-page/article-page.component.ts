@@ -39,11 +39,22 @@ export class ArticlePageComponent implements OnInit {
   follow(){
     this.article.author.following = true;
     this.profileService.follow(this.article.author.username).subscribe();
-
   }
 
   unfollow(){
     this.article.author.following = false;
     this.profileService.unfollow(this.article.author.username).subscribe();
+  }
+
+  favorite(){
+    this.article.favorited = true;
+    this.article.favoritesCount++;
+    this.articleService.favorite(this.article.slug).subscribe();
+  }
+
+  unfavorite(){
+    this.article.favorited = false;
+    this.article.favoritesCount--;
+    this.articleService.unfavorite(this.article.slug).subscribe();
   }
 }
