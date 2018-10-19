@@ -1,10 +1,12 @@
 <div id="list-example" class="list-group box">
           
     <a class="list-group-item list-group-item-action ">  
+       
+        <h5>{{comment.body}}</h5>
         <div class="profileBox">
-                <i class="fa fa-user-circle-o fa-3x " aria-hidden="true"></i>
-                <p class="authorLabel">{{comment.author.username}}</p>
+                <i class="fa fa-user-circle-o fa-1x" aria-hidden="true"></i>
+                &nbsp; &nbsp;
+                <i class="authorLabel">{{comment.author.username}}</i>
         </div>
-        <h3>{{comment.body}}</h3>
     </a>
 </div>

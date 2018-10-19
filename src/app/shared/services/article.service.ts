@@ -110,3 +110,4 @@ export class ArticleService {
     return this.apiService.delete('/articles/'+slug+'/favorite');   
   ]
 }
+}
