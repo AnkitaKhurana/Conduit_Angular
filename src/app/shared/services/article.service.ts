@@ -108,6 +108,5 @@ export class ArticleService {
 
   unfavorite(slug:string){
     return this.apiService.delete('/articles/'+slug+'/favorite');   
-  ]
-}
+  }
 }

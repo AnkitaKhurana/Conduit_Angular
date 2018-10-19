@@ -1,33 +1,41 @@
 <div class="jumbotron">
- <div *ngIf="article">
-    <div class="row">
-        <div class="col-md-9">
-            <h1 class="display-4">{{article.title}}</h1>
-        </div>
-        <div class="col-md-3">
-            <div *ngIf=isMyArticle>
-                    <button type="button" class="btn btn-info" [routerLink]="['/editArticle']" [queryParams]="{slug:article.slug}">Edit Article</button>
-                    <button type="button" class="btn btn-danger" (click)="deleteArticle()">Delete Article</button>
+    <div *ngIf="article">
+        <div class="row">
+            <div class="col-md-9">
+                <h1 class="display-4">{{article.title}}</h1>
             </div>
-            <div *ngIf=!isMyArticle>
-                    <button *ngIf="!article.author.following" type="button" class="btn btn-info"  (click)="follow()" >Follow {{article.author.username}}</button>
-                    <button *ngIf="article.author.following" type="button" class="btn btn-default"  (click)="unfollow()" >Unfollow {{article.author.username}}</button>
+            <div class="col-md-3" *ngIf="user">
+                <div *ngIf=isMyArticle>
+                    <button type="button" class="btn btn-info" [routerLink]="['/editArticle']" [queryParams]="{slug:article.slug}">Edit
+                        Article</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteArticle()">Delete Article</button>
+                </div>
+                <div *ngIf=!isMyArticle>
+                    <button *ngIf="!article.author.following" type="button" class="btn btn-info" (click)="follow()">Follow
+                        {{article.author.username}}</button>
+                    <button *ngIf="article.author.following" type="button" class="btn btn-default" (click)="unfollow()">Unfollow
+                        {{article.author.username}}</button>
 
-                    <button *ngIf="!article.favorited" type="button" class="btn btn-warning" (click)="favorite()">Favorite Article <span>{{article.favoritesCount}}</span></button> 
-                    <button *ngIf="article.favorited" type="button" class="btn btn-warning" (click)="unfavorite()">Unfavorite Article<span>{{article.favoritesCount}}</span></button> 
+                    <button *ngIf="!article.favorited" type="button" class="btn btn-warning" (click)="favorite()">Favorite
+                        Article <span>{{article.favoritesCount}}</span></button>
+                    <button *ngIf="article.favorited" type="button" class="btn btn-warning" (click)="unfavorite()">Unfavorite
+                        Article<span>{{article.favoritesCount}}</span></button>
 
                 </div>
+            </div>
         </div>
-        </div>    
-    <p class="lead"> {{article.description}}</p>
-    <div class="profileBox">
-        <img src="{{article.author.image}}" height="20px" height="20px">
-        <p> &nbsp;{{article.author.username}}</p>
+        <p class="lead"> {{article.description}}</p>
+        <div class="profileBox">
+            <img src="{{article.author.image}}" height="20px" height="20px">
+            <p> &nbsp;{{article.author.username}}</p>
+        </div>
+        <hr class="my-4">
+        <p> {{article.body}}</p>
     </div>
-    <hr class="my-4">
-    <p> {{article.body}}</p>
 </div>
+<div *ngIf="article">
+    <app-comment-editor *ngIf="user" [articleSlug]="article.slug"></app-comment-editor>
+    <app-comments [slug]="article.slug"></app-comments>
 </div>
-<app-comments [slug]="article.slug"></app-comments>
 <br>
 <br>

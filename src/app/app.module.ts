@@ -32,6 +32,7 @@ import { MyFeedComponent } from './my-feed/my-feed.component';
 import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
 import { MyArticlesComponent } from './my-articles/my-articles.component';
 import { ArticleEditorComponent } from './article-editor/article-editor.component';
+import { CommentEditorComponent } from './comment-editor/comment-editor.component';
 
 const appRoutes: Routes = [
   {path:'',component:PageComponent},
@@ -92,7 +93,8 @@ const appRoutes: Routes = [
     MyFeedComponent,
     MyFavoritesComponent,
     MyArticlesComponent,
-    ArticleEditorComponent
+    ArticleEditorComponent,
+    CommentEditorComponent
   ],
   imports: [
     HttpModule,

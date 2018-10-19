@@ -13,7 +13,8 @@ export class CommentsComponent implements OnInit {
   @Input() slug: string;
   comments : Array<Comment>;
   ngOnInit() {
-    this.commentsService.getComments(this.slug).subscribe(result => this.comments = result)
+    this.commentsService.getComments(this.slug).subscribe(result => this.comments = result);
+    this.commentsService.commentsObservable.subscribe(comments => this.comments = comments);
   }
 
 }
