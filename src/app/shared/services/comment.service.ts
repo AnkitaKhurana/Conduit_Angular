@@ -13,24 +13,35 @@ export class CommentService {
   commentsObservable = this.comments.asObservable();
 
   getComments(articleSlug: string) {
+    this.comments.next([]);
     return this.apiService.get('/articles/' + articleSlug + '/comments').pipe(
       map(
-        data =>{
+        data => {
           this.comments.next(data.json().comments);
           return data.json().comments;
-        }         
+        }
       )
     )
   }
 
-  add(mycomment:string, articleSlug:string){
-    let comment={
-      "body" : mycomment
+  add(mycomment: string, articleSlug: string) {
+    let comment = {
+      "body": mycomment
     }
-    return this.apiService.post('/articles/'+articleSlug+'/comments', { comment: comment }).pipe(map(
-      data=>{
+    return this.apiService.post('/articles/' + articleSlug + '/comments', { comment: comment }).pipe(map(
+      data => {
+        this.getComments(articleSlug).subscribe();
         return data.json();
       }
     ))
   }
+
+  delete(articleSlug: string, commentId: number): Observable<any> {
+    return this.apiService.delete('/articles/' + articleSlug + '/comments/' + commentId).pipe(map(data => {
+      this.getComments(articleSlug).subscribe();
+      return data.json();
+    }),
+    );
+  }
+
 }

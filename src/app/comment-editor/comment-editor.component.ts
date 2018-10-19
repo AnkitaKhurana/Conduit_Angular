@@ -22,7 +22,7 @@ export class CommentEditorComponent implements OnInit {
 
   comment(mycomment:string){
     this.commentService.add(mycomment, this.articleSlug).subscribe();
-    this.commentService.getComments(this.articleSlug).subscribe();
+    // this.commentService.getComments(this.articleSlug).subscribe();
     (<HTMLInputElement>document.getElementById('comment')).value = '';
   }
 
