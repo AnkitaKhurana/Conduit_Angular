@@ -11,11 +11,12 @@ export class TagService {
 
   constructor(private apiService: ApiService) { }
 
-  getArticles(tag:string){
+  getArticles(tag:string, pageNumber: number){
     params.set('tag', tag);
+    params.set('offset', (pageNumber * 20).toString());
     return this.apiService.get('/articles', params).pipe(
       map(
-         data => {return data.json().articles;}
+         data => {return data.json();}
        )
      )   
   }

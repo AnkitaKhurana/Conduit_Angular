@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) { }
   user: User;
   ngOnInit() {
-    this.userService.me().subscribe(user=> {console.log(user);this.user = user});
+    this.userService.me().subscribe(user=> {this.user = user});
   }
   logout(){
     this.userService.logout();

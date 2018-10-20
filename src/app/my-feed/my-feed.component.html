@@ -1,5 +1,11 @@
-<div  *ngFor="let article of articles">
+<div *ngFor="let article of articles">
     <app-article [article]="article"></app-article>
 </div>
 
 <p *ngIf="articles.length<=0">No Articles in Feed</p>
+<div class="pagination">
+    <div *ngFor="let page of totalPages">
+        <a class="page-link" (click)="updateFeed(page,$event)">{{page+1}}</a>
+    </div>
+</div>
+<br>

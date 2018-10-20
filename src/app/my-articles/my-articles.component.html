@@ -3,3 +3,9 @@
 </div>
 
 <p *ngIf="articles.length<=0">No Articles yet</p>
+<div class="pagination">
+    <div *ngFor="let page of totalPages">
+        <a class="page-link" (click)="updateFeed(page,$event)">{{page+1}}</a>
+    </div>
+</div>
+<br>

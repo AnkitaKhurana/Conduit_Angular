@@ -12,7 +12,6 @@ export class AuthGuard implements CanActivate {
 
   loggedIn :boolean;
   getStatus():boolean{
-     console.log(this.userService.loggedInStatus())
      return this.userService.loggedInStatus();
   }
 

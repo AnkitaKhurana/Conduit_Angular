@@ -16,11 +16,16 @@ export class ArticleService {
   globalArticles: Array<Article>;
   constructor(private apiService: ApiService, private userService: UserService) { }
 
-  getAllArticles(pageNumber: number) {
+  refreshParams() {
     params.delete('author');
     params.delete('favorited');
-    params.set('offset', (pageNumber*20).toString());
-    return this.apiService.get('/articles',params).pipe(
+    params.delete('offset');
+  }
+
+  getAllArticles(pageNumber: number) {
+    this.refreshParams();
+    params.set('offset', (pageNumber * 20).toString());
+    return this.apiService.get('/articles', params).pipe(
       map(
         data => {
           return data.json();
@@ -37,35 +42,37 @@ export class ArticleService {
       ));
   }
 
-  getFeedArticles() {
-    return this.apiService.get('/articles/feed/').pipe(
+  getFeedArticles(pageNumber: number) {
+    this.refreshParams();
+    params.set('offset', (pageNumber * 20).toString());
+    return this.apiService.get('/articles/feed/', params).pipe(
       map(
         data => {
-          return data.json().articles;
+          return data.json();
         }
       ));
   }
 
-  getFavArticles() {
-    params.delete('author');
-    params.delete('offset');
+  getFavArticles(pageNumber: number) {
+    this.refreshParams();
+    params.set('offset', (pageNumber * 20).toString());
     params.set('favorited', this.userService.user.username);
     return this.apiService.get('/articles', params).pipe(
       map(
         data => {
-          return data.json().articles;
+          return data.json();
         }
       ));
   }
 
-  getMyArticles() {
-    params.delete('favorited');
-    params.delete('offset');
+  getMyArticles(pageNumber: number) {
+    this.refreshParams();
+    params.set('offset', (pageNumber * 20).toString());
     params.set('author', this.userService.user.username);
     return this.apiService.get('/articles', params).pipe(
       map(
         data => {
-          return (data.json().articles);
+          return (data.json());
         }
       ));
   }
@@ -85,21 +92,21 @@ export class ArticleService {
       ));
   }
 
-  delete(articleSlug: string): Observable<any>{
-    return this.apiService.delete('/articles/'+articleSlug).pipe(map(data=>{
+  delete(articleSlug: string): Observable<any> {
+    return this.apiService.delete('/articles/' + articleSlug).pipe(map(data => {
       return data;
     }),
-    );    
+    );
   }
 
-  edit(article: Article,articleSlug: string): Observable<Article> {
+  edit(article: Article, articleSlug: string): Observable<Article> {
     let body = {
       "title": article.title,
       "description": article.description,
       "body": article.body,
       "tagList": article.tagList
     }
-    return this.apiService.put('/articles/'+articleSlug, { article: body }).pipe(
+    return this.apiService.put('/articles/' + articleSlug, { article: body }).pipe(
       map(
         data => {
           return data.json().article;
@@ -107,11 +114,11 @@ export class ArticleService {
       ));
   }
 
-  favorite(slug:string){
-    return this.apiService.post('/articles/'+slug+'/favorite');   
+  favorite(slug: string) {
+    return this.apiService.post('/articles/' + slug + '/favorite');
   }
 
-  unfavorite(slug:string){
-    return this.apiService.delete('/articles/'+slug+'/favorite');   
+  unfavorite(slug: string) {
+    return this.apiService.delete('/articles/' + slug + '/favorite');
   }
 }
