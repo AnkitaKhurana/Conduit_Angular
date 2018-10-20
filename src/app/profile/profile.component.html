@@ -1,3 +1,10 @@
-<p>
-  profile works!
-</p>
+<div class="card">
+  <img src="{{profile.image}}" alt="{{profile.username}}">
+  <h1>{{profile.username}}</h1>
+  <p class="title">{{profile.bio}}</p>
+  <p>{{profile.bio}}</p>
+  <div *ngIf="isLoggedIn">
+    <p *ngIf="!profile.following"><button (click)="follow()">Follow</button></p>
+    <p *ngIf="profile.following"><button (click)="unfollow()">Unfollow</button></p>
+  </div>
+</div>

@@ -9,11 +9,19 @@ export class ProfileService {
 
   constructor(private apiService: ApiService) { }
 
-  follow(profile:string){
-    return this.apiService.post('/profiles/'+profile+'/follow');   
+  get(username: string) {
+    return this.apiService.get('/profiles/' + username).pipe(
+      map(data => {
+        return data.json().profile;
+      })
+    )
   }
-  
-  unfollow(profile:string){
-    return this.apiService.delete('/profiles/'+profile+'/follow');
+
+  follow(profile: string) {
+    return this.apiService.post('/profiles/' + profile + '/follow');
+  }
+
+  unfollow(profile: string) {
+    return this.apiService.delete('/profiles/' + profile + '/follow');
   }
 }

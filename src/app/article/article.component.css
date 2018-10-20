@@ -3,7 +3,7 @@
 }
 
 .profileBox{
-
+    cursor: pointer;
     display: inline-flex;
 }
 

@@ -15,12 +15,12 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './shared/services/api.service';
 import { UserService } from './shared/services/user.service';
-import {AuthGuard} from './auth.guard';
+import { AuthGuard } from './auth.guard';
 import { ArticlesComponent } from './articles/articles.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ArticlePageComponent } from './article-page/article-page.component';
@@ -36,34 +36,23 @@ import { UserComponent } from './user/user.component';
 import { User } from './shared/models/user';
 
 const appRoutes: Routes = [
-  {path:'',component:PageComponent},
-  {path: 'page', component: PageComponent, children: [
-    {path: 'articles', component: ArticlesComponent},
-    {path: 'tag/:tagString', component: TagPageComponent},
-    {path: 'myFeed', component: MyFeedComponent},
-    {path: 'myFavorites', component: MyFavoritesComponent},
-    {path: 'myArticles', component: MyArticlesComponent}
-
-    // {path: 'article', component: ArticleComponent},
-
-    // {path: 'article', component: ArticleComponent, canActivate : [AuthGuard]},
-  
-  ]},
+  { path: '', component: PageComponent },
+  {
+    path: 'page', component: PageComponent, children: [
+      { path: 'articles', component: ArticlesComponent },
+      { path: 'tag/:tagString', component: TagPageComponent },
+      { path: 'myFeed', component: MyFeedComponent },
+      { path: 'myFavorites', component: MyFavoritesComponent },
+      { path: 'myArticles', component: MyArticlesComponent }
+    ]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {path: 'article/:slug', component: ArticlePageComponent},
-  {path: 'addArticle', component: ArticleEditorComponent},
-  {path: 'editArticle', component: ArticleEditorComponent },
-  {path: 'me', component: UserComponent},
-  // {
-  //   path: 'feed',
-  //   component: ,
-  //   data: { title: 'Heroes List' }
-  // },
-  // { path: '',
-  //   redirectTo: '/heroes',
-  //   pathMatch: 'full'
-  // },
+  { path: 'article/:slug', component: ArticlePageComponent },
+  { path: 'addArticle', component: ArticleEditorComponent },
+  { path: 'editArticle', component: ArticleEditorComponent },
+  { path: 'me', component: UserComponent },
+  { path: 'profile/:username', component: ProfileComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
