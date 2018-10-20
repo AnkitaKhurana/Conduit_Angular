@@ -42,17 +42,17 @@ const appRoutes: Routes = [
     path: 'page', component: PageComponent, children: [
       { path: 'articles', component: ArticlesComponent },
       { path: 'tag/:tagString', component: TagPageComponent },
-      { path: 'myFeed', component: MyFeedComponent },
-      { path: 'myFavorites', component: MyFavoritesComponent },
-      { path: 'myArticles', component: MyArticlesComponent }
+      { path: 'myFeed', component: MyFeedComponent, canActivate : [AuthGuard] },
+      { path: 'myFavorites', component: MyFavoritesComponent , canActivate : [AuthGuard]},
+      { path: 'myArticles', component: MyArticlesComponent, canActivate : [AuthGuard] }
     ]
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'article/:slug', component: ArticlePageComponent },
-  { path: 'addArticle', component: ArticleEditorComponent },
-  { path: 'editArticle', component: ArticleEditorComponent },
-  { path: 'me', component: UserComponent },
+  { path: 'addArticle', component: ArticleEditorComponent, canActivate : [AuthGuard] },
+  { path: 'editArticle', component: ArticleEditorComponent,canActivate : [AuthGuard] },
+  { path: 'me', component: UserComponent , canActivate : [AuthGuard]},
   { path: 'profile/:username', component: ProfileComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

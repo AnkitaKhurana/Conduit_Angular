@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../shared/services/user.service';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,12 +14,13 @@ export class LoginComponent implements OnInit {
   get password() { return this.form.get('password') }
 
   responseError: string;
+  returnUrl: string;
   form: FormGroup;
-  constructor(private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private route: ActivatedRoute,private userService: UserService, private formBuilder: FormBuilder, private router: Router) { }
   
   login(): void {
     this.userService.login(this.form.value).subscribe(user => {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl(this.returnUrl);
     },
       error => {
         Object.keys(JSON.parse(error._body).errors).forEach((k) => this.responseError = k + ' ' + JSON.parse(error._body).errors[k])
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
       email: [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
       password: [null, Validators.required]
     });
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
 }
