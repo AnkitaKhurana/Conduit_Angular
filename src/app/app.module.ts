@@ -33,7 +33,8 @@ import { MyArticlesComponent } from './my-articles/my-articles.component';
 import { ArticleEditorComponent } from './article-editor/article-editor.component';
 import { CommentEditorComponent } from './comment-editor/comment-editor.component';
 import { UserComponent } from './user/user.component';
-import { User } from './shared/models/user';
+import { DatePipe } from '@angular/common';
+
 
 const appRoutes: Routes = [
   { path: '', component: PageComponent },
@@ -94,7 +95,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
 
   ],
-  providers: [ApiService, UserService, AuthGuard],
+  providers: [ApiService, UserService, AuthGuard, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

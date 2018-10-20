@@ -1,9 +1,12 @@
 <div id="list-example" class="list-group box">
-          
-    <a class="list-group-item list-group-item-action ">  
+
+    <a class="list-group-item list-group-item-action ">
         <div class="profileBox" (click)="gotoProfile()">
-                <i class="fa fa-user-circle-o fa-3x " aria-hidden="true"></i>
+            <i class="fa fa-user-circle-o fa-3x " aria-hidden="true"></i>
+            <div class="innerBox">
                 <p class="authorLabel">{{article.author.username}}</p>
+                <p class="authorLabel" style="text-height:2px">{{updatedAt}}</p>
+            </div>
         </div>
         <h3>{{article.title}}</h3>
         <p>{{article.description}}</p>
