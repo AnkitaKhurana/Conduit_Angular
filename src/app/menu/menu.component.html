@@ -25,5 +25,8 @@
     <li class="nav-item">
       <a class="nav-link active" routerLink="/page/articles">Global Feed</a>
     </li>
+    <li class="nav-item " *ngIf="tagResult">
+      <a class="nav-link" id="tagTab" data-toggle="tab">#{{tagName}}</a>
+    </li>
   </ul>
 </div>

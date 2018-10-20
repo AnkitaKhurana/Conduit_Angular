@@ -4,7 +4,7 @@ import { UserService } from '../shared/services/user.service';
 import { ArticleService } from '../shared/services/article.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../shared/models/user';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { ProfileService } from '../shared/services/profile.service';
 
 
@@ -15,44 +15,46 @@ import { ProfileService } from '../shared/services/profile.service';
 })
 export class ArticlePageComponent implements OnInit {
 
-  constructor( private articleService: ArticleService,private route: ActivatedRoute, private userService :UserService, private router : Router, private profileService: ProfileService) {    
+  constructor(private articleService: ArticleService, private route: ActivatedRoute, private userService: UserService, private router: Router, private profileService: ProfileService) {
   }
   user: User;
-  article : Article;
-  articleSlug : string;
-  isMyArticle : boolean;
+  article: Article;
+  articleSlug: string;
+  isMyArticle: boolean;
   ngOnInit() {
-    this.route.params.subscribe( params => this.articleSlug = params['slug'] );
+    this.route.params.subscribe(params => this.articleSlug = params['slug']);
     this.articleService.getArticle(this.articleSlug).subscribe(article => {
       this.user = this.userService.user;
       this.article = article;
-      this.isMyArticle = (this.user.username===this.article.author.username)
+      if (this.user)
+        this.isMyArticle = (this.user.username === this.article.author.username);
+      else this.isMyArticle = false;
     });
-  
+
   }
 
-  deleteArticle(){
-      this.articleService.delete(this.article.slug).subscribe();
-      this.router.navigateByUrl('');    
+  deleteArticle() {
+    this.articleService.delete(this.article.slug).subscribe();
+    this.router.navigateByUrl('');
   }
 
-  follow(){
+  follow() {
     this.article.author.following = true;
     this.profileService.follow(this.article.author.username).subscribe();
   }
 
-  unfollow(){
+  unfollow() {
     this.article.author.following = false;
     this.profileService.unfollow(this.article.author.username).subscribe();
   }
 
-  favorite(){
+  favorite() {
     this.article.favorited = true;
     this.article.favoritesCount++;
     this.articleService.favorite(this.article.slug).subscribe();
   }
 
-  unfavorite(){
+  unfavorite() {
     this.article.favorited = false;
     this.article.favoritesCount--;
     this.articleService.unfavorite(this.article.slug).subscribe();

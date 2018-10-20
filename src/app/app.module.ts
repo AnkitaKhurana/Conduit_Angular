@@ -33,6 +33,8 @@ import { MyFavoritesComponent } from './my-favorites/my-favorites.component';
 import { MyArticlesComponent } from './my-articles/my-articles.component';
 import { ArticleEditorComponent } from './article-editor/article-editor.component';
 import { CommentEditorComponent } from './comment-editor/comment-editor.component';
+import { UserComponent } from './user/user.component';
+import { User } from './shared/models/user';
 
 const appRoutes: Routes = [
   {path:'',component:PageComponent},
@@ -53,7 +55,7 @@ const appRoutes: Routes = [
   {path: 'article/:slug', component: ArticlePageComponent},
   {path: 'addArticle', component: ArticleEditorComponent},
   {path: 'editArticle', component: ArticleEditorComponent },
-
+  {path: 'me', component: UserComponent},
   // {
   //   path: 'feed',
   //   component: ,
@@ -94,7 +96,8 @@ const appRoutes: Routes = [
     MyFavoritesComponent,
     MyArticlesComponent,
     ArticleEditorComponent,
-    CommentEditorComponent
+    CommentEditorComponent,
+    UserComponent
   ],
   imports: [
     HttpModule,

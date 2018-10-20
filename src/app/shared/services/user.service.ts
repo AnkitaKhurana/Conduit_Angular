@@ -13,6 +13,15 @@ export class UserService {
   loggingObservable = this.loggedIn.asObservable();
   public user: User;
   constructor(private apiService: ApiService, private tokenService: TokenService) { }
+  
+  me(): Observable<User> {
+      return this.apiService.get('/user').pipe(
+      map(
+        data=>{
+          return data.json().user;
+        })
+      );
+  }
 
   loggedInStatus(){
     return this.loggedIn.getValue();

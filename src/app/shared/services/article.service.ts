@@ -16,11 +16,14 @@ export class ArticleService {
   globalArticles: Array<Article>;
   constructor(private apiService: ApiService, private userService: UserService) { }
 
-  getAllArticles() {
-    return this.apiService.get('/articles').pipe(
+  getAllArticles(pageNumber: number) {
+    params.delete('author');
+    params.delete('favorited');
+    params.set('offset', (pageNumber*20).toString());
+    return this.apiService.get('/articles',params).pipe(
       map(
         data => {
-          return data.json().articles;
+          return data.json();
         }
       ));
   }
@@ -45,6 +48,7 @@ export class ArticleService {
 
   getFavArticles() {
     params.delete('author');
+    params.delete('offset');
     params.set('favorited', this.userService.user.username);
     return this.apiService.get('/articles', params).pipe(
       map(
@@ -56,11 +60,12 @@ export class ArticleService {
 
   getMyArticles() {
     params.delete('favorited');
+    params.delete('offset');
     params.set('author', this.userService.user.username);
     return this.apiService.get('/articles', params).pipe(
       map(
         data => {
-          return data.json().articles;
+          return (data.json().articles);
         }
       ));
   }

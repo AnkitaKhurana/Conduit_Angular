@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../shared/models/article';
-import {ArticleService} from '../shared/services/article.service';
+import { ArticleService } from '../shared/services/article.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-articles',
@@ -9,10 +10,28 @@ import {ArticleService} from '../shared/services/article.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  constructor(private articleService : ArticleService) { }
-  articles : Array<Article>;
-  ngOnInit() {
-    this.articleService.getAllArticles().subscribe(data => this.articles = data);
-  }
+  constructor(private articleService: ArticleService) { this.pageNumber = 1; }
+  articles: Array<Article>;
+  pageNumber: number;
+  totalPages: Array<number>;
+  status: boolean = false;
 
+
+  ngOnInit() {
+    this.articleService.getAllArticles(this.pageNumber).subscribe(data => {
+      this.articles = data.articles;
+      this.totalPages = Array(data.articlesCount / 20).fill(0).map((x, i) => i);
+    });
+  }
+  updateFeed(page: number, event) {
+    let list = document.getElementsByClassName('page-link');
+    for (let i = 0; i < list.length; i++) {
+     list[i].classList.remove('active');
+    }
+    event.target.classList.add('active');
+    this.articleService.getAllArticles(page).subscribe(data => {
+      this.articles = data.articles;
+      this.totalPages = Array(data.articlesCount / 20).fill(0).map((x, i) => i);
+    });
+  }
 }
