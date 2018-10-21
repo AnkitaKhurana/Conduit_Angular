@@ -10,3 +10,12 @@
 .btn{
     margin: 2px;
 }
+.tags{
+    float: right;
+}
+
+.tag{
+    background-color:#dce6e6;
+    margin: 1px;
+    pointer-events: none;
+}

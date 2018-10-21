@@ -1,5 +1,4 @@
 <div id="list-example" class="list-group box">
-
     <a class="list-group-item list-group-item-action ">
         <div class="profileBox" (click)="gotoProfile()">
             <i class="fa fa-user-circle-o fa-3x " aria-hidden="true"></i>
@@ -10,6 +9,9 @@
         </div>
         <h3>{{article.title}}</h3>
         <p>{{article.description}}</p>
+        <div class="tags" *ngFor="let tag of article.tagList">
+            <span class="btn tag">{{tag}}</span>
+        </div>
         <button class="btn btn-info" [routerLink]="['/article',article.slug]">Read More</button>
     </a>
 </div>

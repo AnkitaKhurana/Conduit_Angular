@@ -16,3 +16,12 @@
     padding-left: 15%;
     padding-right:0px; 
 }
+.tags{
+    float: right;
+}
+
+.tag{
+    background-color:#dce6e6;
+    margin: 1px;
+    pointer-events: none;
+}
