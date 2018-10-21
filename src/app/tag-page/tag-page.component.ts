@@ -15,7 +15,7 @@ export class TagPageComponent implements OnInit {
   pageNumber: number;
   totalPages: Array<number>;
 
-  constructor(private tagService: TagService, private route: ActivatedRoute) {this.articles=[];this.pageNumber = 0; }
+  constructor(private tagService: TagService, private route: ActivatedRoute) {this.pageNumber = 0; }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

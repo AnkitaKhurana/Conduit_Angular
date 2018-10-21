@@ -1,11 +1,16 @@
-<div *ngFor="let article of articles">
-    <app-article [article]="article"></app-article>
-</div>
-
-<p *ngIf="articles.length<=0">No Favourites yet</p>
-<div class="pagination">
-    <div *ngFor="let page of totalPages">
-        <a class="page-link" (click)="updateFeed(page,$event)">{{page+1}}</a>
+<div *ngIf="articles;else alternative">
+    <div *ngFor="let article of articles">
+        <app-article [article]="article"></app-article>
     </div>
+
+    <p *ngIf="articles.length<=0">No Favourites yet</p>
+    <div class="pagination">
+        <div *ngFor="let page of totalPages">
+            <a class="page-link" (click)="updateFeed(page,$event)">{{page+1}}</a>
+        </div>
+    </div>
+    <br>
 </div>
-<br>
+<ng-template #alternative>
+    <p>Loading Articles....</p>
+</ng-template>

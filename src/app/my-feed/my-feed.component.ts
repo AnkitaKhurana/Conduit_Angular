@@ -9,7 +9,7 @@ import {Article} from '../shared/models/article';
 })
 export class MyFeedComponent implements OnInit {
 
-  constructor(private articleService : ArticleService) { this.articles=[];this.pageNumber = 0;}
+  constructor(private articleService : ArticleService) {this.pageNumber = 0;}
   articles: Array<Article>;
   pageNumber: number;
   totalPages: Array<number>;

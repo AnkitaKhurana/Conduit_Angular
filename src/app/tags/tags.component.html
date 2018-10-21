@@ -1,8 +1,9 @@
-<div  class="box">
+<div class="box">
   <h4>Popular Tags</h4>
-  <ul >
+  <ul *ngIf="tags; else alternative">
     <li *ngFor="let tag of tags" class="btn btn-primary" [routerLink]="['tag',tag]">
       {{tag}}
     </li>
   </ul>
 </div>
+<ng-template #alternative> <p>Loading Tags....</p></ng-template>
