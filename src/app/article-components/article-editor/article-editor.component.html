@@ -38,8 +38,8 @@
     <div class="form-group">
         <div class="col-sm-12">
             <label for="body" class="control-label">Article Body</label>
-            <input id="body" class="form-control mr-sm-2" type="text" placeholder="Article Body" aria-label="body"
-                formControlName="body">
+            <textarea id="body" class="form-control mr-sm-2" type="text" placeholder="Article Body" aria-label="body"
+                formControlName="body"></textarea>
             <div *ngIf="body">
                 <div *ngIf="body.invalid && (body.dirty || body.touched)">
                     <div *ngIf="body.errors" class="alert alert-danger">
