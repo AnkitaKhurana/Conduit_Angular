@@ -3,6 +3,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Observable } from 'rxjs';
 import { UserService } from './shared/services/user.service';
 import { Router } from '@angular/router';
+import { TokenService } from './shared/services/token.service';
+import { ApiService } from './shared/services/api.service';
 
 
 @Injectable({
@@ -10,24 +12,22 @@ import { Router } from '@angular/router';
 })
 export class AuthGuard implements CanActivate {
 
-  loggedIn :boolean;
-  getStatus():boolean{
-     return this.userService.loggedInStatus();
+  loggedIn: boolean;
+  constructor(private userService: UserService, private router: Router, private tokenService: TokenService, private apiService: ApiService) {
+    this.loggedIn = true;
   }
 
-  constructor(private userService : UserService, private router: Router){
-    this.userService.loggingObservable.subscribe(data => this.loggedIn=data);
-  }
-  
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if(this.getStatus())
-    return true;
-    else
-    {
-      this.router.navigate(['login'], { queryParams: { returnUrl: state.url }});
-      return false;
+
+    if (this.tokenService.getToken()) {
+      this.apiService.get('/user')
+        .subscribe();
+    } else {
+      this.router.navigate(['login'], { queryParams: { returnUrl: state.url } });
+      this.loggedIn = false;
     }
+    return this.loggedIn;
   }
 }

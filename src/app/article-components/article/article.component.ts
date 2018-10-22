@@ -11,12 +11,12 @@ import {DatePipe} from '@angular/common';
 export class ArticleComponent implements OnInit {
 
   @Input() article: Article
-  updatedAt : any;
+  createdAt : any;
   constructor(private router: Router, private  datePipe: DatePipe) { this.article = new Article();
   this.article.slug="";
   }
   ngOnInit() {
-    this.updatedAt = this.datePipe.transform(this.article.updatedAt,"dd MMM yyyy")
+    this.createdAt = this.datePipe.transform(this.article.createdAt,"dd MMM yyyy")
   }
   gotoProfile(){
     this.router.navigateByUrl('/profile/'+this.article.author.username)

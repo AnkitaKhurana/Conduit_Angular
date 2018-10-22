@@ -24,6 +24,7 @@ export class UserService {
   }
 
   loggedInStatus(){
+    console.log(this.loggedIn.getValue())
     return this.loggedIn.getValue();
   }
 
