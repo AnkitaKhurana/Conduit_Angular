@@ -4,7 +4,8 @@
   <p class="title">{{profile.bio}}</p>
   <p>{{profile.bio}}</p>
   <div *ngIf="isLoggedIn">
-    <p *ngIf="!profile.following"><button (click)="follow()">Follow</button></p>
-    <p *ngIf="profile.following"><button (click)="unfollow()">Unfollow</button></p>
+    <p *ngIf="!profile.following"><button (click)="follow()"><i class="fa fa-user-plus" aria-hidden="true"></i>
+      Follow</button></p>
+    <p *ngIf="profile.following"><button (click)="unfollow()"><i class="fa fa-user-o"></i> Unfollow</button></p>
   </div>
 </div>

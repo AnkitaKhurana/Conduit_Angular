@@ -11,20 +11,27 @@
                     <button type="button" class="btn btn-danger" (click)="deleteArticle()">Delete Article</button>
                 </div>
                 <div *ngIf=!isMyArticle>
-                    <button *ngIf="!article.author.following" type="button" class="btn btn-info" (click)="follow()">Follow
+                    <button *ngIf="!article.author.following" type="button" class="btn btn-info" (click)="follow()"><i
+                            class="fa fa-user-plus" aria-hidden="true"></i>
+                        Follow
                         {{article.author.username}}</button>
-                    <button *ngIf="article.author.following" type="button" class="btn btn-default" (click)="unfollow()">Unfollow
+                    <button *ngIf="article.author.following" type="button" class="btn btn-default" (click)="unfollow()"><i
+                            class="fa fa-user-o"></i> Unfollow
                         {{article.author.username}}</button>
 
-                    <button *ngIf="!article.favorited" type="button" class="btn btn-warning" (click)="favorite()">Favorite
-                        Article <span>{{article.favoritesCount}}</span></button>
-                    <button *ngIf="article.favorited" type="button" class="btn btn-warning" (click)="unfavorite()">Unfavorite
-                        Article<span>{{article.favoritesCount}}</span></button>
+                    <button *ngIf="!article.favorited" type="button" class="btn btn-warning" (click)="favorite()"><i
+                            class="fa fa-heart-o" aria-hidden="true"></i>
+                        Favorite
+                        (<span>{{article.favoritesCount}}</span>)</button>
+                    <button *ngIf="article.favorited" type="button" class="btn btn-warning" (click)="unfavorite()"><i
+                            class="fa fa-heart" aria-hidden="true"></i>
+                        Unfavorite
+                        (<span>{{article.favoritesCount}}</span>)</button>
 
                 </div>
                 <div class="tags" *ngFor="let tag of article.tagList">
-                        <span class="btn tag">{{tag}}</span>
-                    </div>
+                    <span class="btn tag">{{tag}}</span>
+                </div>
             </div>
         </div>
         <p class="lead"> {{article.description}}</p>

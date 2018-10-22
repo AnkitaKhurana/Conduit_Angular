@@ -25,3 +25,7 @@
     margin: 1px;
     pointer-events: none;
 }
+
+.fav{
+    text-align: right;
+}

@@ -8,6 +8,8 @@
             </div>
         </div>
         <h3>{{article.title}}</h3>
+        <div *ngIf="article.favorited" class="fav"><i class="fa fa-heart" aria-hidden="true"></i>
+        </div>
         <p>{{article.description}}</p>
         <div class="tags" *ngFor="let tag of article.tagList">
             <span class="btn tag">{{tag}}</span>
