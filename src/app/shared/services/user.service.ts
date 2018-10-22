@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject } from "rxjs";
-import { map, catchError} from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
 import { ApiService } from './api.service';
 import { TokenService } from './token.service';
 import { User } from '../models/user';
@@ -13,42 +13,61 @@ export class UserService {
   loggingObservable = this.loggedIn.asObservable();
   public user: User;
   constructor(private apiService: ApiService, private tokenService: TokenService) { }
-  
+
+  /// **********************************************************************
+  //          Function to get current user
+  /// **********************************************************************
   me(): Observable<User> {
-      return this.apiService.get('/user').pipe(
+    return this.apiService.get('/user').pipe(
       map(
-        data=>{
+        data => {
           return data.json().user;
         })
-      );
+    );
   }
 
-  loggedInStatus(){
-    console.log(this.loggedIn.getValue())
+  /// **********************************************************************
+  //          Function to return current logged in status
+  /// **********************************************************************
+  loggedInStatus() {
     return this.loggedIn.getValue();
   }
 
-  setup(){
+  // **********************************************************************
+  //          Function to setup app
+  /// **********************************************************************
+  setup() {
     if (this.tokenService.getToken()) {
       this.apiService.get('/user')
-      .subscribe(
-        data => this.setAuth(data.json().user),
-      );
+        .subscribe(
+          data => this.setAuth(data.json().user),
+        );
     } else {
       this.logout();
     }
   }
 
-  logout(){
+  /// **********************************************************************
+  //          Function to loggout user from session
+  /// **********************************************************************
+  logout() {
     this.tokenService.destroyToken();
     this.loggedIn.next(false);
     this.user = null;
   }
+
+  /// **********************************************************************
+  //          Function to set authentication 
+  /// **********************************************************************
   setAuth(user: User) {
     this.tokenService.saveToken(user.token);
     this.loggedIn.next(true);
     this.user = user;
   }
+
+  /// **********************************************************************
+  //          Function to login user
+  /// **********************************************************************
   login(user: User): Observable<User> {
     let body = {
       "email": user.email,
@@ -63,6 +82,9 @@ export class UserService {
       ));
   }
 
+  /// **********************************************************************
+  //          Function to register new user 
+  /// **********************************************************************
   register(user: User): Observable<User> {
     let body = {
       "email": user.email,
@@ -75,10 +97,10 @@ export class UserService {
           this.setAuth(data.json().user);
           return data;
         },
-        error=>{
+        error => {
           console.log(error)
         }
       ))
-     
+
   }
 }

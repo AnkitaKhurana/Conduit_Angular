@@ -29,11 +29,17 @@ export class ApiService {
     return throwError(error);
   }
 
+  /// **********************************************************************
+  //          Service to GET all request in the application
+  /// **********************************************************************
   get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
     return this.http.get(`${this.apiUrl}${path}`, { headers: this.setHeaders(), search: params })
       .pipe(map((res: Response) => res), catchError(this.formatErrors));
   }
 
+  /// **********************************************************************
+  //          Service to PUT all request in the application
+  /// **********************************************************************
   put(path: string, body: Object = {}): Observable<any> {
     return this.http.put(
       `${this.apiUrl}${path}`,
@@ -45,6 +51,9 @@ export class ApiService {
     )
   }
 
+  /// **********************************************************************
+  //          Service to POST all request in the application
+  /// **********************************************************************
   post(path: string, body: Object = {}): Observable<any> {
     return this.http.post(
       `${this.apiUrl}${path}`,
@@ -56,6 +65,9 @@ export class ApiService {
     )
   }
 
+  /// **********************************************************************
+  //          Service to DELETE all request in the application
+  /// **********************************************************************
   delete(path): Observable<any> {
     return this.http.delete(
       `${this.apiUrl}${path}`,

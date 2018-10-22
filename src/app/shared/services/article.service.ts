@@ -16,12 +16,18 @@ export class ArticleService {
   globalArticles: Array<Article>;
   constructor(private apiService: ApiService, private userService: UserService) { }
 
+  /// **********************************************************************
+  //          Function to refresh all the route params
+  /// **********************************************************************
   refreshParams() {
     params.delete('author');
     params.delete('favorited');
     params.delete('offset');
   }
 
+  /// **********************************************************************
+  //          Function to fetch all the articles
+  /// **********************************************************************
   getAllArticles(pageNumber: number) {
     this.refreshParams();
     params.set('offset', (pageNumber * 20).toString());
@@ -33,6 +39,9 @@ export class ArticleService {
       ));
   }
 
+  /// **********************************************************************
+  //          Function to get specific Article
+  /// **********************************************************************
   getArticle(slug: string) {
     return this.apiService.get('/articles/' + slug).pipe(
       map(
@@ -42,6 +51,9 @@ export class ArticleService {
       ));
   }
 
+  /// **********************************************************************
+  //          Function to fetch all the feed articles
+  /// **********************************************************************
   getFeedArticles(pageNumber: number) {
     this.refreshParams();
     params.set('offset', (pageNumber * 20).toString());
@@ -53,6 +65,9 @@ export class ArticleService {
       ));
   }
 
+  /// **********************************************************************
+  //          Function to fetch all the favourite articles
+  /// **********************************************************************
   getFavArticles(pageNumber: number) {
     this.refreshParams();
     params.set('offset', (pageNumber * 20).toString());
@@ -65,6 +80,9 @@ export class ArticleService {
       ));
   }
 
+  /// **********************************************************************
+  //          Function to fetch all my feed articles
+  /// **********************************************************************
   getMyArticles(pageNumber: number) {
     this.refreshParams();
     params.set('offset', (pageNumber * 20).toString());
@@ -77,6 +95,9 @@ export class ArticleService {
       ));
   }
 
+  /// **********************************************************************
+  //          Function to add article
+  /// **********************************************************************
   add(article: Article): Observable<Article> {
     let body = {
       "title": article.title,
@@ -92,6 +113,9 @@ export class ArticleService {
       ));
   }
 
+  /// **********************************************************************
+  //          Function to delete article
+  /// **********************************************************************
   delete(articleSlug: string): Observable<any> {
     return this.apiService.delete('/articles/' + articleSlug).pipe(map(data => {
       return data;
@@ -99,6 +123,9 @@ export class ArticleService {
     );
   }
 
+  /// **********************************************************************
+  //          Function to edit article
+  /// **********************************************************************
   edit(article: Article, articleSlug: string): Observable<Article> {
     let body = {
       "title": article.title,
@@ -114,10 +141,16 @@ export class ArticleService {
       ));
   }
 
+  /// **********************************************************************
+  //          Function to favorite an article
+  /// **********************************************************************
   favorite(slug: string) {
     return this.apiService.post('/articles/' + slug + '/favorite');
   }
 
+  /// **********************************************************************
+  //          Function to unfavorite an article
+  /// **********************************************************************
   unfavorite(slug: string) {
     return this.apiService.delete('/articles/' + slug + '/favorite');
   }

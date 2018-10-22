@@ -20,7 +20,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './shared/services/api.service';
 import { UserService } from './shared/services/user.service';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { ArticlesComponent } from './article-components/articles/articles.component';
 import { ProfileComponent } from './profile-components/profile/profile.component';
 import { ArticlePageComponent } from './article-components/article-page/article-page.component';

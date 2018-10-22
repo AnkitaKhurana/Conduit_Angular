@@ -11,6 +11,9 @@ export class TagService {
 
   constructor(private apiService: ApiService) { }
 
+  /// **********************************************************************
+  //          Function to get articles 
+  /// **********************************************************************
   getArticles(tag:string, pageNumber: number){
     params.set('tag', tag);
     params.set('offset', (pageNumber * 20).toString());
@@ -21,6 +24,9 @@ export class TagService {
      )   
   }
 
+  /// **********************************************************************
+  //          Function to get tags 
+  /// **********************************************************************
   getTags(){
     return this.apiService.get('/tags').pipe(
      map(

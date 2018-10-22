@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserService } from './shared/services/user.service';
+import { UserService } from '../shared/services/user.service';
 import { Router } from '@angular/router';
-import { TokenService } from './shared/services/token.service';
-import { ApiService } from './shared/services/api.service';
+import { TokenService } from '../shared/services/token.service';
+import { ApiService } from '../shared/services/api.service';
 
 
 @Injectable({

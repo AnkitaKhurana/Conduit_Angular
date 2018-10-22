@@ -12,6 +12,10 @@ export class CommentService {
   private comments = new BehaviorSubject<any>([]);
   commentsObservable = this.comments.asObservable();
 
+  
+  /// **********************************************************************
+  //          Function to get all comments 
+  /// **********************************************************************
   getComments(articleSlug: string) {
     this.comments.next([]);
     return this.apiService.get('/articles/' + articleSlug + '/comments').pipe(
@@ -24,6 +28,9 @@ export class CommentService {
     )
   }
 
+  /// **********************************************************************
+  //          Function to add new comment 
+  /// **********************************************************************
   add(mycomment: string, articleSlug: string) {
     let comment = {
       "body": mycomment
@@ -36,6 +43,9 @@ export class CommentService {
     ))
   }
 
+  /// **********************************************************************
+  //          Function to delete comment
+  /// **********************************************************************
   delete(articleSlug: string, commentId: number): Observable<any> {
     return this.apiService.delete('/articles/' + articleSlug + '/comments/' + commentId).pipe(map(data => {
       this.getComments(articleSlug).subscribe();
