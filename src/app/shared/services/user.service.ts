@@ -32,7 +32,6 @@ export class UserService {
       this.apiService.get('/user')
       .subscribe(
         data => this.setAuth(data.json().user),
-        // err => this.logout()
       );
     } else {
       this.logout();
@@ -48,7 +47,6 @@ export class UserService {
     this.tokenService.saveToken(user.token);
     this.loggedIn.next(true);
     this.user = user;
-    console.log('auth setted')
   }
   login(user: User): Observable<User> {
     let body = {
