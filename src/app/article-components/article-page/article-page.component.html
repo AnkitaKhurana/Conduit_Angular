@@ -29,10 +29,9 @@
                         (<span>{{article.favoritesCount}}</span>)</button>
 
                 </div>
-                <div class="tags" *ngFor="let tag of article.tagList">
-                    <span class="btn tag">{{tag}}</span>
-                </div>
+
             </div>
+
         </div>
         <p class="lead"> {{article.description}}</p>
         <div class="profileBox">
@@ -41,6 +40,9 @@
         </div>
         <hr class="my-4">
         <p> {{article.body}}</p>
+        <div class="tags" *ngFor="let tag of article.tagList">
+            <span class="btn tag">{{tag}}</span>
+        </div>
     </div>
 </div>
 <div *ngIf="article">
